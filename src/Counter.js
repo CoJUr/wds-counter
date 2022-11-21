@@ -25,5 +25,9 @@ export default class Counter extends Component {
             return { count: prevState.count + amount }
 
         })
+        this.setState(prevState => {
+            return { count: prevState.count + amount }
+
+        })
     }
 }
