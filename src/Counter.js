@@ -16,9 +16,9 @@ export default class Counter extends Component {
             {/* error - bc consumer has a function inside. put all jsx to be rendered in the function body */}
             {style => (
                 <div>
-                    <button onClick={() => this.changeCount(-1)} >-</button>
+                    <button style={style} onClick={() => this.changeCount(-1)} >-</button>
                     <span>{this.state.count}</span>
-                    <button onClick={() => this.changeCount(+1)} >+</button>
+                    <button style={style} onClick={() => this.changeCount(+1)} >+</button>
                 </div>
             )}
             </ThemeContext.Consumer>
