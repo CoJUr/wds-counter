@@ -4,6 +4,7 @@ import CounterHooks from "./CounterHooks";
 
 export const ThemeContext = React.createContext() // 2 parts  1 provider to pass vals, 1 consumer which consumes vals
 //must use state to rerender app in order to change context
+//DEPLOYED TO app.netlify.com/sites/illustrious-lily-96ac3b/overview
 
 
 function App() {
