@@ -1,4 +1,5 @@
 import React from 'react'
+import IngredientList from './IngredientList'
 
 export default function Recipe( props ) {
     // props.recipe.id    <= would have to do this if not doing spread operator impl
@@ -7,8 +8,9 @@ export default function Recipe( props ) {
     name,
     cookTime,
     servings,
-    instructions
-} = props
+    instructions,
+    ingredients
+    } = props
   return (
     <div>
         <div>
@@ -28,12 +30,15 @@ export default function Recipe( props ) {
         </div>
         <div>
             <span>Instructions:</span>
-            <div>
-           {instructions}</div>
+            <div>{instructions}</div>
         </div>
         <div>
-            <span>Cook Time:</span>
-            <span>1:45</span>
+            <span>Ingredients:</span>
+            <div>
+                <IngredientList 
+                //get and render ingredients from here in Recipe
+                ingredients={ ingredients } />
+            </div>
         </div>
     </div>
 
