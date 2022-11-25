@@ -1,7 +1,9 @@
 import React from 'react'
 
-export default function Recipe( {name, cookTime, servings, instructions} ) {
+export default function Recipe( props ) {
     // props.recipe.id    <= would have to do this if not doing spread operator impl
+
+   const {name, cookTime, servings, instructions} = props
   return (
     <div>
         <div>
