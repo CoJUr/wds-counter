@@ -1,11 +1,17 @@
 @import-normalize;
-@import 'font.css';
 /* normalize lib is from create react app and homogenizes default settings between browsers */
+
+@import 'font.css';
+@import 'buttons.css';
 @import 'recipe-list.css';
 
 
 *, *::before, *::after {
     font-family: Gotham Rounded, sans-serif;
+}
+
+html {
+    font-size: 25px;
 }
 
 body {

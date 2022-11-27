@@ -1,0 +1,21 @@
+/* overriding: buttons get default sizing from browser apart from rest of html tree */
+
+.btn {
+    background: none;
+    border: none;
+    outline: none;
+    font-weight: bold;
+    font-size: inherit;
+    border-radius: 5px;
+    padding: 5px 20px;
+    cursor: pointer;
+}
+
+.btn--primary {
+    color: white;
+    background-color: hsl(200, 100%, 50%);
+}
+
+.btn--primary:hover {
+    background-color: hsl(200, 100%, 35%); /* just change the lightness, same saturation, to get tint on hover */
+}
