@@ -4,17 +4,19 @@ import Recipe from './Recipe'
 
 export default function RecipeList({ recipes }) {
   return (
-    <>
-    <div>
-   {recipes.map(recipe => {
-    {/* <Recipe id={recipes.id} name={recipes.name} ></Recipe>   instead: => spread operator */}
-    return <Recipe 
+    <div className='recipe-list'>
+      <div>
+        {recipes.map(recipe => {
+
+        return <Recipe 
         key={recipe.id} // unique id error problem solved
         {...recipe}
-         /> // props lets pass down all properties as top levels of prop rather than being nested in the recipe
-   })}
+         /> 
+        })}
+      </div>
+      <div className='recipe-list_add-recipe-btn-container' > 
+        <button className='btn btn--primary' >Add Recipe</button>
+      </div>
     </div>
-    <button>Add Recipe</button>
-    </>
   )
 }
