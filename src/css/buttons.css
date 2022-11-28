@@ -17,5 +17,14 @@
 }
 
 .btn--primary:hover {
-    background-color: hsl(200, 100%, 35%); /* just change the lightness, same saturation, to get tint on hover */
+    background-color: hsl(200, 100%, 35%); /* just change the lightness, keep same saturation, to get tint on hover */
+}
+
+.btn--danger {
+    color: white;
+    background-color: hsl(0, 100%, 50%);
+}
+
+.btn--danger:hover {
+    background-color: hsl(0, 100%, 35%); /* just change the lightness, keep same saturation, to get tint on hover */
 }

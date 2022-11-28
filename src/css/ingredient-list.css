@@ -1,0 +1,8 @@
+.ingredient-grid {
+    display: grid;
+    /* want 2 sections for each row */
+    grid-template-columns: repeat(2, auto); 
+    row-gap: 5px;
+    column-gap: 40px;
+    justify-content: flex-start;
+}
