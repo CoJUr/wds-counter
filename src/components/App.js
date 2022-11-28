@@ -1,7 +1,7 @@
 import React, {useState} from "react";
 import RecipeList from "./RecipeList";
 import '../css/app.css'
-
+import uuidv4 from 'uuid/v4'
 
 function App() {
   //want recipe state here in App for functionality of editing recipes themselves. both RecipeList and edit functionality need access to recipes 
@@ -10,6 +10,13 @@ function App() {
   return (
     <RecipeList recipes={recipes}/>
   )
+}
+
+function handleRecipeAdd() {
+  const newRecipe = {
+    // could do something like id: Date.now().toString()     using uuid instead for unqique identifiers 
+    id: uuidv4
+  }
 }
 
 //add an arr of sample recipes to make dynamic
