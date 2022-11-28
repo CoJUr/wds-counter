@@ -10,14 +10,25 @@ function App() {
   return (
     <RecipeList recipes={recipes}/>
   )
-}
-
-function handleRecipeAdd() {
-  const newRecipe = {
-    // could do something like id: Date.now().toString()     using uuid instead for unqique identifiers 
-    id: uuidv4()
+  function handleRecipeAdd() {
+    const newRecipe = {
+      // could do something like id: Date.now().toString()     using uuid instead for unqique identifiers 
+      id: uuidv4(),
+      name: 'New',
+      servings: 1,
+      cookTime: '1:00',
+      instructions: 'Instr.',
+      ingredients: [
+        { id: uuidv4(), name: 'Name', amount: '1 Tbs'}
+      ]
+    }
+  
+    //now use setRecipes to add the newRecipe to recipes
+    setRecipes([...recipes, newRecipe])
+  
   }
 }
+
 
 //add an arr of sample recipes to make dynamic
 const sampleRecipes = [
