@@ -1,12 +1,14 @@
-import React from "react";
+import React, {useState} from "react";
 import RecipeList from "./RecipeList";
 import '../css/app.css'
 
 
 function App() {
-
+  //want recipe state here in App for functionality of editing recipes themselves. both RecipeList and edit functionality need access to recipes 
+  // set recipe state to be sampleRecipes the first time calling useState
+  const [recipes, setRecipes] = useState(sampleRecipes)
   return (
-    <RecipeList recipes={sampleRecipes}/>
+    <RecipeList recipes={recipes}/>
   )
 }
 
