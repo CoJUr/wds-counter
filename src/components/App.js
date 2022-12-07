@@ -27,11 +27,17 @@ function App() {
   
   }
 
+  function handleRecipeDelete(id) {
+    //filter out current list of recipes; get all that DONT have the passed in id, and reset list to the omitted list
+    setRecipes(recipes.filter(recipe => recipe.id !== id))
+  }
+
   return (
     <RecipeList 
     recipes={recipes}
     //need to pass handleRecipeAdd to recipe list in order to connect button
     handleRecipeAdd={handleRecipeAdd}
+    handleRecipeDelete={handleRecipeDelete}
     />
   )
   
