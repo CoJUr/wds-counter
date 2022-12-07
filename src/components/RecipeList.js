@@ -1,14 +1,11 @@
 //rfc
-import React from 'react'
+import React, { useContext } from 'react'
 import Recipe from './Recipe'
+import { RecipeContext } from './App'
 
-export default function RecipeList( props ) {
-  //refactor to use props instead of passing in handlers directly via destructure:
-  const {
-    recipes,
-    handleRecipeAdd,
-    handleRecipeDelete
-  } = props
+export default function RecipeList( { recipes } ) {
+  const { handleRecipeAdd } = useContext(RecipeContext) //destructure out desired handleRecipeAdd function for the button
+
 
   return (
     <div className='recipe-list'>
@@ -16,11 +13,7 @@ export default function RecipeList( props ) {
         {recipes.map(recipe => {
 
         return (
-        <Recipe 
-        key={recipe.id} // unique id error problem solved
-        handleRecipeDelete={handleRecipeDelete}
-        {...recipe}
-         /> 
+        <Recipe key={recipe.id} {...recipe} /> 
         )
         })}
       </div>

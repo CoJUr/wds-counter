@@ -3,10 +3,22 @@ import RecipeList from "./RecipeList";
 import '../css/app.css'
 import { v4 as uuidv4 } from 'uuid'
 
+
+//set up context and then set up the value we will pass into the context (all the handler functions)
+export const RecipeContext = React.createContext()
+
 function App() {
   //want recipe state here in App for functionality of editing recipes themselves. both RecipeList and edit functionality need access to recipes 
   // set recipe state to be sampleRecipes the first time calling useState
   const [recipes, setRecipes] = useState(sampleRecipes)
+
+  const recipeContextValue = {
+    // handleRecipeAdd: handleRecipeAdd,
+    // handleRecipeDelete: handleRecipeDelete
+    //key and value have the same name, so can just say it once because JS
+    handleRecipeAdd,
+    handleRecipeDelete
+  }
 
   function handleRecipeAdd() {
     
@@ -34,12 +46,11 @@ function App() {
   }
 
   return (
-    <RecipeList 
-    recipes={recipes}
-    //need to pass handleRecipeAdd to recipe list in order to connect button
-    handleRecipeAdd={handleRecipeAdd}
-    handleRecipeDelete={handleRecipeDelete}
-    />
+    //wrap the code in the context - allows no need for prop drilling handler functions to RecipeList once referenced in Context
+    <RecipeContext.Provider value={recipeContextValue}> 
+      <RecipeList recipes={recipes}/>
+    </RecipeContext.Provider>
+    
   )
   
 }
