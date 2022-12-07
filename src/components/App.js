@@ -10,6 +10,7 @@ function App() {
 
   function handleRecipeAdd() {
     
+    //creating a default recipe
     const newRecipe = {
       // could do something like id: Date.now().toString()     using uuid instead for unqique identifiers 
       id: uuidv4(),
@@ -22,7 +23,7 @@ function App() {
       ]
     }
   
-    //now use setRecipes to add the newRecipe to recipes
+    //after creating a recipe can now use setRecipes to add the newRecipe to recipes
     setRecipes([...recipes, newRecipe])
   
   }
