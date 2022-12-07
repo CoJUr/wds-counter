@@ -7,10 +7,9 @@ function App() {
   //want recipe state here in App for functionality of editing recipes themselves. both RecipeList and edit functionality need access to recipes 
   // set recipe state to be sampleRecipes the first time calling useState
   const [recipes, setRecipes] = useState(sampleRecipes)
-  return (
-    <RecipeList recipes={recipes}/>
-  )
+
   function handleRecipeAdd() {
+    
     const newRecipe = {
       // could do something like id: Date.now().toString()     using uuid instead for unqique identifiers 
       id: uuidv4(),
@@ -27,6 +26,15 @@ function App() {
     setRecipes([...recipes, newRecipe])
   
   }
+
+  return (
+    <RecipeList 
+    recipes={recipes}
+    //need to pass handleRecipeAdd to recipe list in order to connect button
+    handleRecipeAdd={handleRecipeAdd}
+    />
+  )
+  
 }
 
 
