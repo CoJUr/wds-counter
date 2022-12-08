@@ -1,4 +1,4 @@
-import React, { useContext } from 'react'
+import React, { useContext, useEffect } from 'react'
 import IngredientList from './IngredientList'
 import { RecipeContext } from './App'
 
@@ -13,6 +13,14 @@ export default function Recipe( props ) {
     instructions,
     ingredients,
     } = props
+
+    useEffect(() => {
+        console.log('Rendered')
+        //now return the function that will call as soon as component unmounts
+        return () => {
+            console.log('Unmount')
+        }
+    }, []) //pass empty arr 2nd arg to ensure only runs on 1st render
   return (
     <div className='recipe'>
         <div className='recipe__header' >
