@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, {useState, useEffect } from "react";
 import RecipeList from "./RecipeList";
 import '../css/app.css'
 import { v4 as uuidv4 } from 'uuid'
@@ -11,6 +11,10 @@ function App() {
   //want recipe state here in App for functionality of editing recipes themselves. both RecipeList and edit functionality need access to recipes 
   // set recipe state to be sampleRecipes the first time calling useState
   const [recipes, setRecipes] = useState(sampleRecipes)
+
+  useEffect(() => {
+    console.log('Rendered') //2nd param is WHEN you want to use the function. empty array = run when app loads only
+  }, [recipes])
 
   const recipeContextValue = {
     // handleRecipeAdd: handleRecipeAdd,

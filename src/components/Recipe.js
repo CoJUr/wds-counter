@@ -32,7 +32,7 @@ export default function Recipe( props ) {
             <span className='recipe__value'>{ cookTime }</span>
         </div>
         <div className='recipe__row'>
-            <spa className='recipe__label'n>Servings:</spa>
+            <span className='recipe__label'>Servings:</span>
             <span className='recipe__value'> {servings} </span>
         </div>
         <div className='recipe__row'>
