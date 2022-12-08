@@ -6,14 +6,26 @@ import { v4 as uuidv4 } from 'uuid'
 
 //set up context and then set up the value we will pass into the context (all the handler functions)
 export const RecipeContext = React.createContext()
+const LOCAL_STORAGE_KEY = 'cookinWithReact.recipes'
 
 function App() {
   //want recipe state here in App for functionality of editing recipes themselves. both RecipeList and edit functionality need access to recipes 
   // set recipe state to be sampleRecipes the first time calling useState
   const [recipes, setRecipes] = useState(sampleRecipes)
 
+  //this useEffect hook loads/gets the values from local storage so the recipes can 'stick' between refreshes
   useEffect(() => {
-    console.log('Rendered') //2nd param is WHEN you want to use the function. empty array = run when app loads only
+    //load recipes in everytime app is rendered (once)
+    const recipeJSON = localStorage.getItem(LOCAL_STORAGE_KEY) // will return nothing if no recipes
+    
+    if (recipeJSON != null) /* if not null, we do have information in local storage.*/ {
+      setRecipes(JSON.parse(recipeJSON)) 
+      //converts JSON str -> JSON arr and puts it in state, + re-rendering comp
+    }
+  }, [])
+
+  useEffect(() => {
+    localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(recipes)) //Persisting - local storage only supports strings so convert JS array to str
   }, [recipes])
 
   const recipeContextValue = {
