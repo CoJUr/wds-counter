@@ -1,4 +1,5 @@
 import React from 'react'
+import RecipeIngredientEdit from './RecipeIngredientEdit'
 
 export default function RecipeEdit() {
   return (
@@ -15,6 +16,19 @@ export default function RecipeEdit() {
             <input type="number" min='1' name='servings' id='servings' />
             <label htmlFor="instructions">Instructions</label>
             <textarea name="instructions" id="instructions" ></textarea>
+        </div>
+        <br />
+        <label>Ingredients</label>
+        <div>
+            <div>Name</div>
+            <div>Amount</div>
+            <div></div>
+            <RecipeIngredientEdit />
+            <RecipeIngredientEdit />
+
+        </div>
+        <div>
+            <button>Add Ingredient</button>
         </div>
     </div>
   )
