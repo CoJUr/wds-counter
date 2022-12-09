@@ -2,6 +2,7 @@ import React, {useState, useEffect } from "react";
 import RecipeList from "./RecipeList";
 import '../css/app.css'
 import { v4 as uuidv4 } from 'uuid'
+import RecipeEdit from "./RecipeEdit";
 
 
 //set up context and then set up the value we will pass into the context (all the handler functions)
@@ -23,6 +24,7 @@ function App() {
     } else {
       return JSON.parse(recipeJSON)
     }
+
       // setRecipes(JSON.parse(recipeJSON)) 
       //converts JSON str -> JSON arr and puts it in state, + re-rendering comp
   })
@@ -69,6 +71,7 @@ function App() {
     //wrap the code in the context - allows no need for prop drilling handler functions to RecipeList once referenced in Context
     <RecipeContext.Provider value={recipeContextValue}> 
       <RecipeList recipes={recipes}/>
+      <RecipeEdit  />
     </RecipeContext.Provider>
     
   )
