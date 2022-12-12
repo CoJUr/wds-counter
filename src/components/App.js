@@ -10,12 +10,16 @@ export const RecipeContext = React.createContext()
 const LOCAL_STORAGE_KEY = 'cookinWithReact.recipes'
 
 function App() {
-  //want recipe state here in App for functionality of editing recipes themselves. both RecipeList and edit functionality need access to recipes 
-  // set recipe state to be sampleRecipes the first time calling useState
-  // const [recipes, setRecipes] = useState(sampleRecipes) 
+  //state for selected recipes, select by id to get it from the list but by default select nothing
+  const [selectedRecipeId, setSelectedRecipeId] = useState()
+  const [recipes, setRecipes] = useState(sampleRecipes)
+  const selectedRecipe = recipes.find(recipe => recipe.id === selectedRecipeId) //compare each recipe id to the selected recipe. ret undefined if no selected recipe
+  //now want to pass the selected recipe into the edit section on right side by passing it down to recipeEdit
+
+
 
   //this useEffect hook loads/gets the values from local storage so the recipes can 'stick' between refreshes
-  const [recipes, setRecipes] = useState(() => {
+  useState(() => {
     //load recipes in everytime app is rendered (once)
     const recipeJSON = localStorage.getItem(LOCAL_STORAGE_KEY) // will return nothing if no recipes
     
@@ -39,7 +43,12 @@ function App() {
     // handleRecipeDelete: handleRecipeDelete
     //key and value have the same name, so can just say it once because JS
     handleRecipeAdd,
-    handleRecipeDelete
+    handleRecipeDelete,
+    handleRecipeSelect
+  }
+
+  function handleRecipeSelect(id) {
+    setSelectedRecipeId(id)
   }
 
   function handleRecipeAdd() {
@@ -71,7 +80,9 @@ function App() {
     //wrap the code in the context - allows no need for prop drilling handler functions to RecipeList once referenced in Context
     <RecipeContext.Provider value={recipeContextValue}> 
       <RecipeList recipes={recipes}/>
-      <RecipeEdit  />
+
+      {/*todo: make edit section hidden by default until have selected a recipe to edit */}
+      {selectedRecipe && <RecipeEdit recipe={selectedRecipe} />}
     </RecipeContext.Provider>
     
   )
