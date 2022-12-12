@@ -44,7 +44,8 @@ function App() {
     //key and value have the same name, so can just say it once because JS
     handleRecipeAdd,
     handleRecipeDelete,
-    handleRecipeSelect
+    handleRecipeSelect,
+    handleRecipeChange
   }
 
   function handleRecipeSelect(id) {
@@ -68,7 +69,16 @@ function App() {
   
     //after creating a recipe can now use setRecipes to add the newRecipe to recipes
     setRecipes([...recipes, newRecipe])
-  
+  }
+
+  //function to allow changing recipes array to update a recipe. 2 args: 1st is id of recipe to be changed, 2nd is new recipe
+  function handleRecipeChange(id, recipe) {
+    const newRecipes = [...recipes] //copying recipe array. next, get index assoc. with passed id
+    const index = newRecipes.findIndex(r => r.id === id) 
+    newRecipes[index] = recipe 
+    //changed recipe is now updated in the recipes array
+    setRecipes(newRecipes)
+    //now add to context so can call this in the inputs
   }
 
   function handleRecipeDelete(id) {

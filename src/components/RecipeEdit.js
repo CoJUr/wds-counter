@@ -1,7 +1,14 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import RecipeIngredientEdit from './RecipeIngredientEdit'
+import { RecipeContext } from './App'
 
 export default function RecipeEdit({ recipe }) {
+    const { handleRecipeChange } = useContext(RecipeContext)
+
+    //helper func to handle all shared functionality between inputs
+    function handleChange(changes) {
+        //'changes' === an obj with all the differences between current recipe
+    }
   return (
     <div className='recipe-edit'>
         <div className='recipe-edit__remove-button-container'>
@@ -68,8 +75,9 @@ export default function RecipeEdit({ recipe }) {
             {/* replace hardcode placeholders with dynamic rendering of RecipeIngredientEdit */}
             {recipe.ingredients.map(ingredient => (
                 <RecipeIngredientEdit 
-                key={ ingredient.id} 
-                ingredient={ingredient} />
+                 key={ ingredient.id} 
+                 ingredient={ingredient} 
+                />
             ))}
             {/* <RecipeIngredientEdit />
             <RecipeIngredientEdit /> */}
