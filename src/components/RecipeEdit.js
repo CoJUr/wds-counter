@@ -8,7 +8,13 @@ export default function RecipeEdit({ recipe }) {
     //helper func to handle all shared functionality between inputs
     function handleChange(changes) {
         //'changes' === an obj with all the differences between current recipe
+
+        handleRecipeChange(recipe.id, { ...recipe, ...changes}) 
+        //overwriting anything in 'changes' and adding it to everything in recipe (e.g. name from 'recipe' -> name from 'changes')
+        //passing new recipe up to handleRecipeChange. recipe.id being the recipe we want to replace when creating the new obj for state in the inputs. 
     }
+
+    
   return (
     <div className='recipe-edit'>
         <div className='recipe-edit__remove-button-container'>
@@ -26,6 +32,7 @@ export default function RecipeEdit({ recipe }) {
                 id='name' 
                 className='recipe-edit__input'
                 value={recipe.name}
+                onInput={e => handleChange({ name: e.target.value })} // whatever is typed in gets passed as new name for component
             />
             <label
              htmlFor="cookTime"
@@ -38,6 +45,7 @@ export default function RecipeEdit({ recipe }) {
                 id='cookTime' 
                 className='recipe-edit__input'
                 value={recipe.cookTime}
+                onInput={e => handleChange({ cookTime: e.target.value })}
             />
             <label
              htmlFor="servings"
@@ -51,6 +59,7 @@ export default function RecipeEdit({ recipe }) {
                 id='servings' 
                 className='recipe-edit__input'
                 value={recipe.servings}
+                onInput={e => handleChange({ servings: parseInt(e.target.value) || '' })} //logical OR operator prevents displaying NaN if field blank
             />
             <label
              htmlFor="instructions"
