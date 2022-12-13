@@ -15,10 +15,10 @@ export default function RecipeEdit({ recipe }) {
     }
 
     function handleIngredientChange(id, ingredient) {
-    const newIngredients = [...recipe.ingredient] //duplicating current array again
+    const newIngredients = [...recipe.ingredients] //duplicating current array again
     const index = newIngredients.findIndex(i => i.id === id) //finding ingredient with id
     newIngredients[index] = ingredient  //passed in ingredient goes into the appropriate index
-    handleChange( { ingredients: newIngredients })
+    handleChange( { ingredients: newIngredients }) //setting state
     }
 
     
