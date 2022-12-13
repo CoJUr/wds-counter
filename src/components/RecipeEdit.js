@@ -14,6 +14,13 @@ export default function RecipeEdit({ recipe }) {
         //passing new recipe up to handleRecipeChange. recipe.id being the recipe we want to replace when creating the new obj for state in the inputs. 
     }
 
+    function handleIngredientChange(id, ingredient) {
+    const newIngredients = [...recipe.ingredient] //duplicating current array again
+    const index = newIngredients.findIndex(i => i.id === id) //finding ingredient with id
+    newIngredients[index] = ingredient  //passed in ingredient goes into the appropriate index
+    handleChange( { ingredients: newIngredients })
+    }
+
     
   return (
     <div className='recipe-edit'>
@@ -71,6 +78,7 @@ export default function RecipeEdit({ recipe }) {
              className='recipe-edit__input'
              id="instructions" 
              value={recipe.instructions}
+             onInput={e => handleChange({ instructions: e.target.value })}
             >
              </textarea>
         </div>
@@ -85,6 +93,8 @@ export default function RecipeEdit({ recipe }) {
             {recipe.ingredients.map(ingredient => (
                 <RecipeIngredientEdit 
                  key={ ingredient.id} 
+                 //passing down handleChange = {handleChange} could work but want handle ingredient change and delete separately 
+                 handleIngredientChange={handleIngredientChange}
                  ingredient={ingredient} 
                 />
             ))}
