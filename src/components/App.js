@@ -58,14 +58,17 @@ function App() {
     const newRecipe = {
       // could do something like id: Date.now().toString()     using uuid instead for unqique identifiers 
       id: uuidv4(),
-      name: 'New',
+      name: '',
       servings: 1,
-      cookTime: '1:00',
-      instructions: 'Instr.',
+      cookTime: '',
+      instructions: '',
       ingredients: [
-        { id: uuidv4(), name: 'Name', amount: '1 Tbs'}
+        { id: uuidv4(), name: '', amount: ''}
       ]
     }
+
+    //set selected recipe to be newRecipe when clicking handleRecipeAdd so editing interface displays automatically
+    setSelectedRecipeId(newRecipe.id)
   
     //after creating a recipe can now use setRecipes to add the newRecipe to recipes
     setRecipes([...recipes, newRecipe])

@@ -1,14 +1,14 @@
 import React, { useContext } from 'react'
 import RecipeIngredientEdit from './RecipeIngredientEdit'
 import { RecipeContext } from './App'
+import { v4 as uuidv4 } from 'uuid'
+
 
 export default function RecipeEdit({ recipe }) {
-    const { handleRecipeChange } = useContext(RecipeContext)
+    const { handleRecipeChange, handleRecipeSelect } = useContext(RecipeContext)
 
-    //helper func to handle all shared functionality between inputs
+    //helper func to handle all shared functionality between inputs. 'changes' === an obj with all the differences between current recipe
     function handleChange(changes) {
-        //'changes' === an obj with all the differences between current recipe
-
         handleRecipeChange(recipe.id, { ...recipe, ...changes}) 
         //overwriting anything in 'changes' and adding it to everything in recipe (e.g. name from 'recipe' -> name from 'changes')
         //passing new recipe up to handleRecipeChange. recipe.id being the recipe we want to replace when creating the new obj for state in the inputs. 
@@ -21,11 +21,26 @@ export default function RecipeEdit({ recipe }) {
     handleChange( { ingredients: newIngredients }) //setting state
     }
 
+    //handle adding/creating ingredients
+    function handleIngredientAdd() {
+        const newIngredient = {
+            id: uuidv4(),
+            name: '',
+            amount: ''
+            //now got the ingredient, time to call handleChange() to propogate up to the recipe
+        }
+        handleChange({ ingredients: [...recipe.ingredients, newIngredient]})
+    }
     
   return (
     <div className='recipe-edit'>
         <div className='recipe-edit__remove-button-container'>
-            <button className='btn recipe-edit__remove-button'>&times;</button>
+            <button
+             className='btn recipe-edit__remove-button'
+            onClick={() => handleRecipeSelect(undefined)} //setting selectedRecipeId to undefined which 'closes'/hides the edit UI
+            >
+             &times;
+            </button>
         </div>
         <div className='recipe-edit__details-grid'>
             <label 
@@ -103,7 +118,12 @@ export default function RecipeEdit({ recipe }) {
 
         </div>
         <div className='recipe-edit__add-ingredient-btn-container'>
-            <button className='btn btn--primary'>Add Ingredient</button>
+            <button
+             className='btn btn--primary'
+             onClick={() => handleIngredientAdd()}
+            >
+             Add Ingredient
+            </button>
         </div>
     </div>
   )
