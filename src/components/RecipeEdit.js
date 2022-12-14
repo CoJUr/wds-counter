@@ -61,7 +61,7 @@ export default function RecipeEdit({ recipe }) {
                 id='name' 
                 className='recipe-edit__input'
                 value={recipe.name}
-                onInput={e => handleChange({ name: e.target.value })} // whatever is typed in gets passed as new name for component
+                onChange={e => handleChange({ name: e.target.value })} // whatever is typed in gets passed as new name for component
             />
             <label
              htmlFor="cookTime"
@@ -74,7 +74,7 @@ export default function RecipeEdit({ recipe }) {
                 id='cookTime' 
                 className='recipe-edit__input'
                 value={recipe.cookTime}
-                onInput={e => handleChange({ cookTime: e.target.value })}
+                onChange={e => handleChange({ cookTime: e.target.value })}
             />
             <label
              htmlFor="servings"
@@ -88,7 +88,7 @@ export default function RecipeEdit({ recipe }) {
                 id='servings' 
                 className='recipe-edit__input'
                 value={recipe.servings}
-                onInput={e => handleChange({ servings: parseInt(e.target.value) || '' })} //logical OR operator prevents displaying NaN if field blank
+                onChange={e => handleChange({ servings: parseInt(e.target.value) || '' })} //logical OR operator prevents displaying NaN if field blank
             />
             <label
              htmlFor="instructions"
@@ -100,7 +100,7 @@ export default function RecipeEdit({ recipe }) {
              className='recipe-edit__input'
              id="instructions" 
              value={recipe.instructions}
-             onInput={e => handleChange({ instructions: e.target.value })}
+             onChange={e => handleChange({ instructions: e.target.value })}
             >
              </textarea>
         </div>

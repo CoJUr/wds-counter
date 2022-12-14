@@ -67,7 +67,7 @@ function App() {
       ]
     }
 
-    //set selected recipe to be newRecipe when clicking handleRecipeAdd so editing interface displays automatically
+    //set selected recipe to be newRecipe when clicking handleRecipeAdd(Add Recipe btn) so editing interface displays automatically
     setSelectedRecipeId(newRecipe.id)
   
     //after creating a recipe can now use setRecipes to add the newRecipe to recipes
@@ -85,6 +85,11 @@ function App() {
   }
 
   function handleRecipeDelete(id) {
+    //check to see if have selected recipe id (clearing selected recipe id after deletion bug)
+    if (selectedRecipeId != null && selectedRecipeId === id) {
+      //if here, deleting the currently selected recipe. so reset selectedRecipeId to null
+      setSelectedRecipeId(undefined)
+    }
     //filter out current list of recipes; get all that DONT have the passed in id, and reset list to the omitted list
     setRecipes(recipes.filter(recipe => recipe.id !== id))
   }
