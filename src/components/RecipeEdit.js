@@ -31,6 +31,13 @@ export default function RecipeEdit({ recipe }) {
         }
         handleChange({ ingredients: [...recipe.ingredients, newIngredient]})
     }
+
+    function handleIngredientDelete(id) {
+        handleChange({
+            ingredients: recipe.ingredients.filter(i => i.id !== id) 
+            //setting state of ingredients list to be without the one want to remove
+        })
+    }
     
   return (
     <div className='recipe-edit'>
@@ -110,6 +117,7 @@ export default function RecipeEdit({ recipe }) {
                  key={ ingredient.id} 
                  //passing down handleChange = {handleChange} could work but want handle ingredient change and delete separately 
                  handleIngredientChange={handleIngredientChange}
+                 handleIngredientDelete={handleIngredientDelete}
                  ingredient={ingredient} 
                 />
             ))}
